@@ -1,4 +1,6 @@
-﻿using AventStack.ExtentReports;
+﻿
+using AventStack.ExtentReports;
+using AventStack.ExtentReports.Model;
 using AventStack.ExtentReports.Reporter;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -13,7 +15,7 @@ namespace SeleniumWithCsharp.Utils
 
     class BaseClass
     {
-        ExtentReports extent_reports;
+        public static ExtentReports extent_reports;
         ExtentTest test;
         //private IWebDriver driver;
          ThreadLocal<IWebDriver> driver = new();
@@ -23,21 +25,17 @@ namespace SeleniumWithCsharp.Utils
         {
 
             string workingDirectory = Environment.CurrentDirectory;
-            string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+            string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
             string reportPath = projectDirectory + "//index.html";
             
             Console.WriteLine("Path: " + reportPath);
-            var htmlreporter = new ExtentHtmlReporter(reportPath);
+
+            ExtentSparkReporter htmlreporter = new ExtentSparkReporter (reportPath);
             extent_reports = new ExtentReports();
             extent_reports.AttachReporter(htmlreporter);
             extent_reports.AddSystemInfo("UserName", "abhishek");
             extent_reports.AddSystemInfo("hostname", "localhost");
-
             extent_reports.AddSystemInfo("env", "test");
-
-
-
-
 
         }
 
@@ -97,7 +95,7 @@ namespace SeleniumWithCsharp.Utils
         }
 
 
-        public MediaEntityModelProvider CaptureScreenshot(IWebDriver driver,String ScreenShotName)
+        public Media CaptureScreenshot(IWebDriver driver,String ScreenShotName)
         {
             ITakesScreenshot ts = (ITakesScreenshot)driver;
             var screenshot = ts.GetScreenshot().AsBase64EncodedString;
@@ -126,10 +124,10 @@ namespace SeleniumWithCsharp.Utils
                 {
 
             }
-//            extent_reports.Flush();
+          extent_reports.Flush();
 
              driver.Value.Quit();
-               // driver.Value.Dispose();
+                driver.Value.Dispose();
             
 
         }

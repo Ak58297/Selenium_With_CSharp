@@ -60,7 +60,7 @@
             },
             "ExtentReports": {
               "target": "Package",
-              "version": "[4.0.1, )"
+              "version": "[5.0.4, )"
             },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",

@@ -20,7 +20,7 @@ namespace SeleniumWithCsharp.Tests
         }
 
 
-        [Test]
+        [Test, Category("Regression")]
         public void HomepageWithoutLogin()
         {
             hp.ValidateHomePage();
@@ -33,7 +33,7 @@ namespace SeleniumWithCsharp.Tests
         [Test, Category("Regression")]
       //  [Parallelizable(ParallelScope.All)]
         [TestCase("iphone 16 pro max", "Pro Max (Black Titanium, 512 GB)")]
-        [TestCase("samsung s24 ultra", "Ultra 5G (Titanium Gray, 256 GB)")]
+        [TestCase("samsung s24", "S24 5G (Amber Yellow, 128 GB)")]
         public void SeachMobilePhones(string phoneName, string selectedVariant)
         {
             hp.SelectSearchedMobiles(phoneName, selectedVariant);

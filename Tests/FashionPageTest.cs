@@ -19,7 +19,7 @@ namespace SeleniumWithCsharp.Tests
         }
 
 
-        [Test]
+        [Test, Category("Regression")]
         public void CheckThedropDownOfFashionPage()
         {
             string text=fp.NavigateToCasualShoeSection();
